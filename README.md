@@ -1,0 +1,1 @@
+basic webpack5-react-ts template
