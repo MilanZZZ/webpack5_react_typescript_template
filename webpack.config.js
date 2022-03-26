@@ -1,0 +1,32 @@
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  // Where files should be sent once they are bundled
+ entry: './src/index.tsx',
+ resolve: {
+    extensions: ['.ts', '.tsx', '.js']
+  },
+ output: {
+   filename: 'bundle.js',
+   path: path.join(__dirname, '/dist'),
+ },
+  // webpack 5 comes with devServer which loads in development mode
+devServer: {
+    static: path.resolve(__dirname, 'dist'),
+    port: 3000,
+    open: true,
+    hot: true,
+    
+ },
+ module: {
+  rules: [
+    {
+      test: /\.tsx?$/,
+      use: 'ts-loader',
+      exclude: /node_modules/,
+    },
+    ]
+  },
+  plugins: [new HtmlWebpackPlugin({ template: './src/index.html' })],
+ }
